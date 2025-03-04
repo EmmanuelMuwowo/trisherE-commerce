@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clothing Shop</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .breadcrumb-section {
+            background: url('assets/img/banner-clothing.jpg') no-repeat center center/cover;
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+        .breadcrumb-section h1 {
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .product-section {
+            padding: 80px 0;
+        }
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			align-content: center;
+            gap: 20px;
+        }
+		.item:nth-child(1),
+		.item:nth-child(2),
+		.item:nth-child(3),
+		.item:nth-child(4),
+		.item:nth-child(5),
+		.item:nth-child(6){
+			width: 25%;
+		}
+        .single-product-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .single-product-item:hover {
+            transform: scale(1.05);
+        }
+        .product-image img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .cart-btn {
+            background:blue;
+            color: white;
+            font-weight: 600;
+            padding: 10px 15px;
+            display: inline-block;
+            border-radius: 5px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .cart-btn:hover {
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Trisher Looks</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="payment.html">Payment</a></li>
+                    <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                    <li class="nav-item"><a class="btn btn-primary" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Breadcrumb Section -->
+    <div class="breadcrumb-section">
+        <h1>Clothing Shop</h1>
+        <p>Trendy and Stylish Apparel</p>
+    </div>
+    
+    <!-- Product Section -->
+    <div class="container product-section">
+        <div class="product-grid">
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="single-product.html"><img src="assets/img/clothing/product1.jpg" alt="T-Shirt"></a>
+                </div>
+                <h3>Classic T-Shirt</h3>
+                <p class="product-price">K180</p>
+                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="single-product.html"><img src="assets/img/clothing/product2.jpg" alt="Jacket"></a>
+                </div>
+                <h3>Stylish Jacket</h3>
+                <p class="product-price">K400</p>
+                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="single-product.html"><img src="assets/img/clothing/product3.jpg" alt="Jeans"></a>
+                </div>
+                <h3>Denim Jeans</h3>
+                <p class="product-price">K200</p>
+                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="single-product.html"><img src="assets/img/clothing/product4.jpg" alt="Sneakers"></a>
+                </div>
+                <h3>Casual Sneakers</h3>
+                <p class="product-price">K450</p>
+                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="single-product.html"><img src="assets/img/clothing/product5.jpg" alt="Hoodie"></a>
+                </div>
+                <h3>Comfy Hoodie</h3>
+                <p class="product-price">K440</p>
+                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="single-product.html"><img src="assets/img/clothing/product6.jpg" alt="Cap"></a>
+                </div>
+                <h3>Stylish Cap</h3>
+                <p class="product-price">K150</p>
+                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-center">
+                    <p>&copy; 2025 Clothing Shop. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
