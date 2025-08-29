@@ -1,177 +1,960 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clothing Shop</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore trendy and stylish apparel at Trisher Looks Clothing Shop">
+  <title>Trisher Looks - Clothing Shop</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    :root {
+      --primary-color: #ff2c54;
+      --secondary-color: #f5f5f5;
+      --dark-text: #333333;
+      --light-text: #777777;
+      --card-radius: 8px;
+      --transition-speed: 0.3s;
+      --shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
     
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffffff;
+      color: var(--dark-text);
+      padding-top: 80px;
+    }
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/css/all.min.css">
+    /* Header Styles */
+    .navbar {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 10px 0;
+      background: white !important;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
     
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--primary-color) !important;
+    }
     
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-        }
-        .breadcrumb-section {
-            background: url('assets/img/banner-clothing.jpg') no-repeat center center/cover;
-            padding: 80px 0;
-            text-align: center;
-            color: white;
-        }
-        .breadcrumb-section h1 {
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-        .product-section {
-            padding: 80px 0;
-        }
-        .product-grid {
-            display: flex;
-            flex-wrap: wrap;
-			justify-content: center;
-			align-items: center;
-			align-content: center;
-            gap: 20px;
-        }
-		.item:nth-child(1),
-		.item:nth-child(2),
-		.item:nth-child(3),
-		.item:nth-child(4),
-		.item:nth-child(5),
-		.item:nth-child(6){
-			width: 25%;
-		}
-        .single-product-item {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        .single-product-item:hover {
-            transform: scale(1.05);
-        }
-        .product-image img {
-            width: 100%;
-            border-radius: 5px;
-        }
-        .cart-btn {
-            background:blue;
-            color: white;
-            font-weight: 600;
-            padding: 10px 15px;
-            display: inline-block;
-            border-radius: 5px;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-        .cart-btn:hover {
-            background: blue;
-        }
-    </style>
+    .nav-link {
+      font-weight: 500;
+      color: var(--dark-text) !important;
+      transition: color var(--transition-speed);
+    }
+    
+    .nav-link:hover {
+      color: var(--primary-color) !important;
+    }
+    
+    .search-container {
+      position: relative;
+      margin: 0 15px;
+      flex-grow: 1;
+      max-width: 600px;
+    }
+    
+    .search-input {
+      border-radius: 20px;
+      padding: 8px 45px 8px 15px;
+      border: 1px solid #e5e5e5;
+      width: 100%;
+      font-size: 14px;
+    }
+    
+    .search-btn {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--primary-color);
+      border: none;
+      color: white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .action-icons {
+      display: flex;
+      gap: 15px;
+      margin-left: 15px;
+    }
+    
+    .action-icon {
+      color: var(--dark-text);
+      font-size: 18px;
+      position: relative;
+      transition: color var(--transition-speed);
+    }
+    
+    .action-icon:hover {
+      color: var(--primary-color);
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--primary-color);
+      color: white;
+      font-size: 10px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Breadcrumb Section */
+    .breadcrumb-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/images/hero2.jpg') center/cover no-repeat;
+      padding: 4rem 0;
+      text-align: center;
+      color: #fff;
+      margin-bottom: 30px;
+    }
+    
+    .breadcrumb-section h1 {
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+    }
+    
+    /* Filter Section */
+    .filter-section {
+      background: white;
+      padding: 15px;
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 25px;
+    }
+    
+    .filter-title {
+      font-weight: 600;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    
+    .filter-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .filter-option {
+      padding: 6px 15px;
+      border: 1px solid #e5e5e5;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all var(--transition-speed);
+    }
+    
+    .filter-option:hover, .filter-option.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    
+    .filter-dropdown {
+      position: relative;
+    }
+    
+    .filter-dropdown-btn {
+      padding: 6px 15px;
+      border: 1px solid #e5e5e5;
+      border-radius: 20px;
+      font-size: 14px;
+      background: white;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .dropdown-filter-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      box-shadow: var(--shadow-hover);
+      border-radius: var(--card-radius);
+      padding: 15px;
+      width: 200px;
+      z-index: 100;
+      margin-top: 5px;
+    }
+    
+    .filter-dropdown:hover .dropdown-filter-content {
+      display: block;
+    }
+    
+    .filter-checkbox {
+      margin-bottom: 10px;
+    }
+    
+    .filter-checkbox label {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    /* Product Card */
+    .product-card {
+      border: none;
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .product-image-container {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .product-card img {
+      object-fit: cover;
+      height: 280px;
+      width: 100%;
+      transition: transform 0.5s ease;
+    }
+    
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .product-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--primary-color);
+      color: white;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    
+    .product-actions {
+      position: absolute;
+      bottom: -40px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+      transition: bottom var(--transition-speed);
+    }
+    
+    .product-card:hover .product-actions {
+      bottom: 0;
+    }
+    
+    .action-btn {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: white;
+      border: 1px solid #e5e5e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark-text);
+      transition: all var(--transition-speed);
+    }
+    
+    .action-btn:hover {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    
+    .card-body {
+      padding: 15px;
+    }
+    
+    .product-title {
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .product-price {
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 5px;
+    }
+    
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .rating-stars {
+      color: #ffc107;
+      font-size: 12px;
+    }
+    
+    .rating-count {
+      font-size: 12px;
+      color: var(--light-text);
+    }
+    
+    /* View options */
+    .view-options {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    
+    .view-toggle {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .view-btn {
+      background: white;
+      border: 1px solid #e5e5e5;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark-text);
+    }
+    
+    .view-btn.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    
+    .sort-select {
+      border: 1px solid #e5e5e5;
+      border-radius: 20px;
+      padding: 5px 15px;
+      font-size: 14px;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: #1a1a1a;
+      color: #adb5bd;
+      padding: 3rem 0 1.5rem;
+      margin-top: 50px;
+    }
+    
+    .footer-title {
+      color: white;
+      font-weight: 600;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+      color: #adb5bd;
+      text-decoration: none;
+      transition: color var(--transition-speed);
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid #333;
+      padding-top: 20px;
+      margin-top: 30px;
+      text-align: center;
+    }
+    
+    .payment-methods {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 15px;
+    }
+    
+    .payment-icon {
+      background: white;
+      width: 40px;
+      height: 25px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .navbar-collapse {
+        background: white;
+        padding: 15px;
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow);
+        margin-top: 10px;
+      }
+      
+      .search-container {
+        margin: 10px 0;
+        max-width: 100%;
+      }
+      
+      .action-icons {
+        margin-left: 0;
+        justify-content: center;
+        margin-top: 10px;
+      }
+      
+      .filter-options {
+        overflow-x: auto;
+        padding-bottom: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Trisher Looks</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+  <!-- Header / Navbar -->
+  <header class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">Trisher Looks</a>
+      
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search for products...">
+        <button class="search-btn"><i class="fas fa-search"></i></button>
+      </div>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Women</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Men</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Kids</a></li>
+          <li class="nav-item"><a class="nav-link active" href="shop.html">Shop</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+        
+        <div class="action-icons">
+          <a href="#" class="action-icon"><i class="far fa-user"></i></a>
+          <a href="#" class="action-icon"><i class="far fa-heart"></i></a>
+          <a href="cart.html" class="action-icon">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-count">3</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb Section -->
+  <section class="breadcrumb-section">
+    <div class="container">
+      <h1>Clothing Shop</h1>
+      <p class="lead">Trendy and Stylish Apparel</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- View Options and Filters -->
+    <div class="row">
+      <div class="col-12">
+        <div class="view-options">
+          <div class="view-toggle">
+            <button class="view-btn active"><i class="fas fa-th"></i></button>
+            <button class="view-btn"><i class="fas fa-list"></i></button>
+          </div>
+          
+          <div class="filter-dropdown">
+            <button class="filter-dropdown-btn">
+              Sort by: Recommended <i class="fas fa-chevron-down"></i>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
-                    <li class="nav-item"><a class="nav-link" href="payment.html">Payment</a></li>
-                    <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
-                    <li class="nav-item"><a class="btn btn-primary" href="login.html">Login</a></li>
-                </ul>
+            <div class="dropdown-filter-content">
+              <div class="filter-checkbox">
+                <label><input type="radio" name="sort" checked> Recommended</label>
+              </div>
+              <div class="filter-checkbox">
+                <label><input type="radio" name="sort"> Newest</label>
+              </div>
+              <div class="filter-checkbox">
+                <label><input type="radio" name="sort"> Price: Low to High</label>
+              </div>
+              <div class="filter-checkbox">
+                <label><input type="radio" name="sort"> Price: High to Low</label>
+              </div>
             </div>
+          </div>
         </div>
-    </nav>
-    
-    <!-- Breadcrumb Section -->
-    <div class="breadcrumb-section">
-        <h1>Clothing Shop</h1>
-        <p>Trendy and Stylish Apparel</p>
+      </div>
     </div>
     
+    <!-- Filter Section -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="filter-section">
+          <h6 class="filter-title">Filters</h6>
+          <div class="filter-options">
+            <div class="filter-option active">All</div>
+            <div class="filter-option">Women</div>
+            <div class="filter-option">Men</div>
+            <div class="filter-option">Tops</div>
+            <div class="filter-option">Bottoms</div>
+            <div class="filter-option">Shoes</div>
+            <div class="filter-option">Accessories</div>
+            <div class="filter-option">Sale</div>
+          </div>
+          
+          <div class="d-flex flex-wrap gap-2">
+            <div class="filter-dropdown">
+              <button class="filter-dropdown-btn">
+                Size <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="dropdown-filter-content">
+                <div class="filter-checkbox">
+                  <label><input type="checkbox"> XS</label>
+                </div>
+                <div class="filter-checkbox">
+                  <label><input type="checkbox"> S</label>
+                </div>
+                <div class="filter-checkbox">
+                  <label><input type="checkbox"> M</label>
+                </div>
+                <div class="filter-checkbox">
+                  <label><input type="checkbox"> L</label>
+                </div>
+                <div class="filter-checkbox">
+                  <label><input type="checkbox"> XL</label>
+                </div>
+              </div>
+            </div>
+            
+            <div class="filter-dropdown">
+              <button class="filter-dropdown-btn">
+                Color <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="dropdown-filter-content">
+                <div class="filter-checkbox">
+                  <label><input type="checkbox"> Black</label>
+                </div>
+                <div class="filter-checkbox">
+                  <label><input type="checkbox"> White</label>
+                </div>
+                <div class="filter-checkbox">
+                  <label><input type="checkbox"> Red</label>
+                </div>
+                <div class="filter-checkbox">
+                  <label><input type="checkbox"> Blue</label>
+                </div>
+                <div class="filter-checkbox">
+                  <label><input type="checkbox"> Green</label>
+                </div>
+              </div>
+            </div>
+            
+            <div class="filter-dropdown">
+              <button class="filter-dropdown-btn">
+                Price <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="dropdown-filter-content">
+                <div class="filter-checkbox">
+                  <label><input type="checkbox"> Under ZMW 200</label>
+                </div>
+                <div class="filter-checkbox">
+                  <label><input type="checkbox"> ZMW 200 - ZMW 500</label>
+                </div>
+                <div class="filter-checkbox">
+                  <label><input type="checkbox"> ZMW 500 - ZMW 1000</label>
+                </div>
+                <div class="filter-checkbox">
+                  <label><input type="checkbox"> Over ZMW 1000</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Product Section -->
-    <div class="container product-section">
-        <div class="product-grid">
-            <div class="single-product-item">
-                <div class="product-image">
-                    <a href="single-product.html"><img src="assets/img/clothing/product1.jpg" alt="T-Shirt"></a>
-                </div>
-                <h3>Classic T-Shirt</h3>
-                <p class="product-price">K180</p>
-                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+    <div class="row g-4" id="product-list">
+      <!-- Product Card 1 -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card product-card">
+          <div class="product-image-container">
+            <span class="product-badge">New</span>
+            <img src="assets/images/fenty_brown.jpeg" class="card-img-top" alt="Fenty Brown Shoe" loading="lazy">
+            <div class="product-actions">
+              <button class="action-btn"><i class="far fa-heart"></i></button>
+              <button class="action-btn"><i class="fas fa-shopping-bag"></i></button>
+              <button class="action-btn"><i class="far fa-eye"></i></button>
             </div>
-            <div class="single-product-item">
-                <div class="product-image">
-                    <a href="single-product.html"><img src="assets/img/clothing/product2.jpg" alt="Jacket"></a>
-                </div>
-                <h3>Stylish Jacket</h3>
-                <p class="product-price">K400</p>
-                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+          </div>
+          <div class="card-body">
+            <h6 class="product-title">Fenty Brown Casual Shoes</h6>
+            <div class="product-price">ZMW 750.00</div>
+            <div class="product-rating">
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(24)</span>
             </div>
-            <div class="single-product-item">
-                <div class="product-image">
-                    <a href="single-product.html"><img src="assets/img/clothing/product3.jpg" alt="Jeans"></a>
-                </div>
-                <h3>Denim Jeans</h3>
-                <p class="product-price">K200</p>
-                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-            </div>
-            <div class="single-product-item">
-                <div class="product-image">
-                    <a href="single-product.html"><img src="assets/img/clothing/product4.jpg" alt="Sneakers"></a>
-                </div>
-                <h3>Casual Sneakers</h3>
-                <p class="product-price">K450</p>
-                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-            </div>
-            <div class="single-product-item">
-                <div class="product-image">
-                    <a href="single-product.html"><img src="assets/img/clothing/product5.jpg" alt="Hoodie"></a>
-                </div>
-                <h3>Comfy Hoodie</h3>
-                <p class="product-price">K440</p>
-                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-            </div>
-            <div class="single-product-item">
-                <div class="product-image">
-                    <a href="single-product.html"><img src="assets/img/clothing/product6.jpg" alt="Cap"></a>
-                </div>
-                <h3>Stylish Cap</h3>
-                <p class="product-price">K150</p>
-                <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-            </div>
+          </div>
         </div>
-    </div>
-    
-    <!-- Footer -->
-    <div class="footer-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 text-center">
-                    <p>&copy; 2025 Clothing Shop. All rights reserved.</p>
-                </div>
+      </div>
+
+      <!-- Product Card 2 -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card product-card">
+          <div class="product-image-container">
+            <span class="product-badge">Sale</span>
+            <img src="assets/images/puma.jpeg" class="card-img-top" alt="Puma Shoes" loading="lazy">
+            <div class="product-actions">
+              <button class="action-btn"><i class="far fa-heart"></i></button>
+              <button class="action-btn"><i class="fas fa-shopping-bag"></i></button>
+              <button class="action-btn"><i class="far fa-eye"></i></button>
             </div>
+          </div>
+          <div class="card-body">
+            <h6 class="product-title">Puma Running Shoes</h6>
+            <div class="product-price">ZMW 600.00 <span style="text-decoration: line-through; color: var(--light-text); font-size: 12px;">ZMW 800.00</span></div>
+            <div class="product-rating">
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <span class="rating-count">(42)</span>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Product Card 3 -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card product-card">
+          <div class="product-image-container">
+            <img src="assets/images/puma.jpeg" class="card-img-top" alt="Summer T-Shirt" loading="lazy">
+            <div class="product-actions">
+              <button class="action-btn"><i class="far fa-heart"></i></button>
+              <button class="action-btn"><i class="fas fa-shopping-bag"></i></button>
+              <button class="action-btn"><i class="far fa-eye"></i></button>
+            </div>
+          </div>
+          <div class="card-body">
+            <h6 class="product-title">Classic Cotton T-Shirt</h6>
+            <div class="product-price">ZMW 250.00</div>
+            <div class="product-rating">
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(18)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 4 -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card product-card">
+          <div class="product-image-container">
+            <span class="product-badge">Trending</span>
+            <img src="assets/images/fenty_brown.jpeg" class="card-img-top" alt="Denim Jacket" loading="lazy">
+            <div class="product-actions">
+              <button class="action-btn"><i class="far fa-heart"></i></button>
+              <button class="action-btn"><i class="fas fa-shopping-bag"></i></button>
+              <button class="action-btn"><i class="far fa-eye"></i></button>
+            </div>
+          </div>
+          <div class="card-body">
+            <h6 class="product-title">Denim Jacket</h6>
+            <div class="product-price">ZMW 950.00</div>
+            <div class="product-rating">
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="rating-count">(56)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Repeat for more products -->
+      <!-- Product Card 5 -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card product-card">
+          <div class="product-image-container">
+            <img src="assets/images/puma.jpeg" class="card-img-top" alt="Casual Dress" loading="lazy">
+            <div class="product-actions">
+              <button class="action-btn"><i class="far fa-heart"></i></button>
+              <button class="action-btn"><i class="fas fa-shopping-bag"></i></button>
+              <button class="action-btn"><i class="far fa-eye"></i></button>
+            </div>
+          </div>
+          <div class="card-body">
+            <h6 class="product-title">Summer Floral Dress</h6>
+            <div class="product-price">ZMW 550.00</div>
+            <div class="product-rating">
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(31)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 6 -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card product-card">
+          <div class="product-image-container">
+            <span class="product-badge">Sale</span>
+            <img src="assets/images/fenty_brown.jpeg" class="card-img-top" alt="Sports Shorts" loading="lazy">
+            <div class="product-actions">
+              <button class="action-btn"><i class="far fa-heart"></i></button>
+              <button class="action-btn"><i class="fas fa-shopping-bag"></i></button>
+              <button class="action-btn"><i class="far fa-eye"></i></button>
+            </div>
+          </div>
+          <div class="card-body">
+            <h6 class="product-title">Sports Training Shorts</h6>
+            <div class="product-price">ZMW 350.00 <span style="text-decoration: line-through; color: var(--light-text); font-size: 12px;">ZMW 450.00</span></div>
+            <div class="product-rating">
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(27)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 7 -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card product-card">
+          <div class="product-image-container">
+            <img src="assets/images/puma.jpeg" class="card-img-top" alt="Formal Shirt" loading="lazy">
+            <div class="product-actions">
+              <button class="action-btn"><i class="far fa-heart"></i></button>
+              <button class="action-btn"><i class="fas fa-shopping-bag"></i></button>
+              <button class="action-btn"><i class="far fa-eye"></i></button>
+            </div>
+          </div>
+          <div class="card-body">
+            <h6 class="product-title">Formal Cotton Shirt</h6>
+            <div class="product-price">ZMW 480.00</div>
+            <div class="product-rating">
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="rating-count">(49)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 8 -->
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card product-card">
+          <div class="product-image-container">
+            <span class="product-badge">New</span>
+            <img src="assets/images/fenty_brown.jpeg" class="card-img-top" alt="Winter Sweater" loading="lazy">
+            <div class="product-actions">
+              <button class="action-btn"><i class="far fa-heart"></i></button>
+              <button class="action-btn"><i class="fas fa-shopping-bag"></i></button>
+              <button class="action-btn"><i class="far fa-eye"></i></button>
+            </div>
+          </div>
+          <div class="card-body">
+            <h6 class="product-title">Winter Knit Sweater</h6>
+            <div class="product-price">ZMW 850.00</div>
+            <div class="product-rating">
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(15)</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation" class="mt-5">
+      <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 mb-4">
+          <h5 class="footer-title">Trisher Looks</h5>
+          <p>We offer trendy and affordable fashion for everyone. Quality products at the best prices.</p>
+        </div>
+        <div class="col-md-3 mb-4">
+          <h5 class="footer-title">Shop</h5>
+          <ul class="footer-links">
+            <li><a href="#">Women's Fashion</a></li>
+            <li><a href="#">Men's Fashion</a></li>
+            <li><a href="#">Kids' Fashion</a></li>
+            <li><a href="#">Accessories</a></li>
+            <li><a href="#">New Arrivals</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 mb-4">
+          <h5 class="footer-title">Customer Service</h5>
+          <ul class="footer-links">
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Shipping & Returns</a></li>
+            <li><a href="#">Track Order</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 mb-4">
+          <h5 class="footer-title">Newsletter</h5>
+          <p>Subscribe to get special offers, free giveaways, and new arrivals.</p>
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Your email" aria-label="Your email">
+            <button class="btn btn-primary" type="button">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="mb-2">&copy; 2025 Trisher Looks. All rights reserved.</p>
+        <div class="payment-methods">
+          <div class="payment-icon">Visa</div>
+          <div class="payment-icon">MC</div>
+          <div class="payment-icon">PayPal</div>
+          <div class="payment-icon">MOMO</div>
+        </div>
+        <div class="mt-3">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook fa-lg me-3"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter fa-lg me-3"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Simple functionality for view toggle buttons
+    document.addEventListener('DOMContentLoaded', function() {
+      const viewButtons = document.querySelectorAll('.view-btn');
+      
+      viewButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          viewButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Here you would add logic to change the product view
+          // For example, switching between grid and list view
+        });
+      });
+      
+      // Filter option selection
+      const filterOptions = document.querySelectorAll('.filter-option');
+      
+      filterOptions.forEach(option => {
+        option.addEventListener('click', function() {
+          filterOptions.forEach(opt => opt.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+    });
+  </script>
 </body>
 </html>

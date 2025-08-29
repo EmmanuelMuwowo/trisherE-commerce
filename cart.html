@@ -2,100 +2,720 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Modern and professional shopping cart page">
-    <title>Trisher | cart</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | Trisher Looks</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/css/all.min.css">
-    
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #ff2c54;
+            --secondary-color: #f5f5f5;
+            --dark-text: #333333;
+            --light-text: #777777;
+            --card-radius: 8px;
+            --transition-speed: 0.3s;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+            color: var(--dark-text);
+            padding-top: 80px;
         }
-        .cart-table {
-            background: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .cart-table th, .cart-table td {
-            padding: 15px;
-            text-align: center;
-            vertical-align: middle;
-        }
-        .product-image img {
-            max-width: 70px;
-            border-radius: 5px;
-        }
-        .cart-buttons .btn {
+        
+        /* Header Styles */
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            background: white !important;
+            position: fixed;
+            top: 0;
             width: 100%;
-            font-weight: 600;
-            padding: 12px;
-            border-radius: 5px;
+            z-index: 1000;
         }
-        .total-section {
-            background: #fff;
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--primary-color) !important;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark-text) !important;
+            transition: color var(--transition-speed);
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .search-container {
+            position: relative;
+            margin: 0 15px;
+            flex-grow: 1;
+            max-width: 600px;
+        }
+        
+        .search-input {
+            border-radius: 20px;
+            padding: 8px 45px 8px 15px;
+            border: 1px solid #e5e5e5;
+            width: 100%;
+            font-size: 14px;
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .action-icons {
+            display: flex;
+            gap: 15px;
+            margin-left: 15px;
+        }
+        
+        .action-icon {
+            color: var(--dark-text);
+            font-size: 18px;
+            position: relative;
+            transition: color var(--transition-speed);
+        }
+        
+        .action-icon:hover {
+            color: var(--primary-color);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary-color);
+            color: white;
+            font-size: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem 0;
+            margin-bottom: 30px;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 0;
+        }
+        
+        /* Cart Items */
+        .cart-item {
+            background: white;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: box-shadow var(--transition-speed);
+        }
+        
+        .cart-item:hover {
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .cart-product-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: var(--card-radius);
+        }
+        
+        .product-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .product-price {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            border: 1px solid #e5e5e5;
+            border-radius: 20px;
+            width: fit-content;
+        }
+        
+        .quantity-btn {
+            background: none;
+            border: none;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            text-align: center;
+            border: none;
+            background: transparent;
+        }
+        
+        .remove-btn {
+            color: var(--light-text);
+            background: none;
+            border: none;
+            font-size: 14px;
+            transition: color var(--transition-speed);
+        }
+        
+        .remove-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Coupon Section */
+        .coupon-box {
+            background: white;
+            padding: 20px;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+        
+        .coupon-input {
+            border: 1px solid #e5e5e5;
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 14px;
+            width: 100%;
+        }
+        
+        /* Cart Summary */
+        .cart-summary {
+            background: white;
+            padding: 25px;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 100px;
+        }
+        
+        .summary-title {
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 18px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e5e5;
+            margin-top: 15px;
+        }
+        
+        .checkout-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 12px;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color var(--transition-speed);
+        }
+        
+        .checkout-btn:hover {
+            background: #e01a4f;
+        }
+        
+        .continue-shopping {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #adb5bd;
+            padding: 3rem 0 1.5rem;
+            margin-top: 50px;
+        }
+        
+        .footer-title {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        .payment-icon {
+            background: white;
+            width: 40px;
+            height: 25px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        /* Empty Cart */
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-cart-icon {
+            font-size: 80px;
+            color: #e5e5e5;
+            margin-bottom: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar-collapse {
+                background: white;
+                padding: 15px;
+                border-radius: var(--card-radius);
+                box-shadow: var(--shadow);
+                margin-top: 10px;
+            }
+            
+            .search-container {
+                margin: 10px 0;
+                max-width: 100%;
+            }
+            
+            .action-icons {
+                margin-left: 0;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .cart-product-img {
+                width: 80px;
+                height: 80px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="cart-table">
-                    <table class="table">
-                        <thead class="bg-primary text-white">
-                            <tr>
-                                <th>Remove</th>
-                                <th>Product</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><a href="#" class="text-danger"><i class="far fa-trash-alt"></i></a></td>
-                                <td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-                                <td>Artificial Leather Shoes</td>
-                                <td>K350</td>
-                                <td><input type="number" class="form-control" value="1" min="1"></td>
-                                <td>$85</td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+<!-- Header / Navbar -->
+<header class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">Trisher Looks</a>
+        
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search for products...">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Women</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Men</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Kids</a></li>
+                <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
+            
+            <div class="action-icons">
+                <a href="#" class="action-icon"><i class="far fa-user"></i></a>
+                <a href="#" class="action-icon"><i class="far fa-heart"></i></a>
+                <a href="cart.html" class="action-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">3</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Breadcrumb Section -->
+<section class="breadcrumb-section">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="shop.html">Shop</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Cart Section -->
+<section class="container mb-5">
+    <h2 class="mb-4">Your Shopping Cart</h2>
+    
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Cart Items -->
+            <div class="cart-item">
+                <div class="row align-items-center">
+                    <div class="col-3 col-md-2">
+                        <img src="assets/images/product-img-1.jpg" alt="Product Image" class="cart-product-img">
+                    </div>
+                    <div class="col-9 col-md-10">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6 class="product-title">Smart Shirt</h6>
+                                <p class="product-price mb-2">ZMW 200.00</p>
+                                <p class="text-muted small mb-2">Size: M | Color: Blue</p>
+                            </div>
+                            <div class="text-end">
+                                <button class="remove-btn"><i class="fas fa-times me-1"></i> Remove</button>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="quantity-control">
+                                <button class="quantity-btn">-</button>
+                                <input type="text" class="quantity-input" value="1">
+                                <button class="quantity-btn">+</button>
+                            </div>
+                            <div class="product-price">ZMW 200.00</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="total-section">
-                    <h5>Cart Summary</h5>
-                    <hr>
-                    <p><strong>Subtotal:</strong> K85</p>
-                    <p><strong>Delivery:</strong> K5</p>
-                    <h4><strong>Total:</strong> K90</h4>
-                    <div class="cart-buttons mt-3">
-                        <a href="checkout.html" class="btn btn-primary">Proceed to payment</a>
+            
+            <div class="cart-item">
+                <div class="row align-items-center">
+                    <div class="col-3 col-md-2">
+                        <img src="assets/images/product-img-2.jpg" alt="Product Image" class="cart-product-img">
                     </div>
+                    <div class="col-9 col-md-10">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6 class="product-title">Smart Shoes</h6>
+                                <p class="product-price mb-2">ZMW 288.00</p>
+                                <p class="text-muted small mb-2">Size: 42 | Color: White</p>
+                            </div>
+                            <div class="text-end">
+                                <button class="remove-btn"><i class="fas fa-times me-1"></i> Remove</button>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="quantity-control">
+                                <button class="quantity-btn">-</button>
+                                <input type="text" class="quantity-input" value="2">
+                                <button class="quantity-btn">+</button>
+                            </div>
+                            <div class="product-price">ZMW 576.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Coupon Section -->
+            <div class="coupon-box">
+                <h5 class="mb-3">Apply Coupon</h5>
+                <div class="d-flex gap-2">
+                    <input type="text" class="form-control coupon-input" placeholder="Enter coupon code">
+                    <button class="btn btn-dark" style="border-radius: 20px;">Apply</button>
+                </div>
+            </div>
+            
+            <!-- Continue Shopping -->
+            <div class="mt-3">
+                <a href="shop.html" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left me-2"></i>Continue Shopping
+                </a>
+            </div>
+        </div>
+        
+        <!-- Cart Summary -->
+        <div class="col-lg-4">
+            <div class="cart-summary">
+                <h5 class="summary-title">Order Summary</h5>
+                
+                <div class="summary-item">
+                    <span>Subtotal</span>
+                    <span>ZMW 776.00</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span>Shipping</span>
+                    <span>ZMW 50.00</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span>Tax</span>
+                    <span>ZMW 30.00</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span>Discount</span>
+                    <span class="text-danger">- ZMW 0.00</span>
+                </div>
+                
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span>ZMW 856.00</span>
+                </div>
+                
+                <button class="checkout-btn">Proceed to Checkout</button>
+                
+                <p class="text-center text-muted small mt-3">
+                    <i class="fas fa-lock me-1"></i> Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Recently Viewed -->
+<section class="container mb-5">
+    <h4 class="mb-4">Recently Viewed</h4>
+    <div class="row">
+        <div class="col-6 col-md-3">
+            <div class="card product-card">
+                <div class="product-image-container">
+                    <img src="assets/images/fenty_brown.jpeg" class="card-img-top" alt="Fenty Brown Shoe" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h6 class="product-title">Fenty Brown Casual Shoes</h6>
+                    <div class="product-price">ZMW 750.00</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card product-card">
+                <div class="product-image-container">
+                    <img src="assets/images/puma.jpeg" class="card-img-top" alt="Puma Shoes" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h6 class="product-title">Puma Running Shoes</h6>
+                    <div class="product-price">ZMW 600.00</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card product-card">
+                <div class="product-image-container">
+                    <img src="assets/images/fenty_brown.jpeg" class="card-img-top" alt="Denim Jacket" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h6 class="product-title">Denim Jacket</h6>
+                    <div class="product-price">ZMW 950.00</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card product-card">
+                <div class="product-image-container">
+                    <img src="assets/images/puma.jpeg" class="card-img-top" alt="Formal Shirt" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h6 class="product-title">Formal Cotton Shirt</h6>
+                    <div class="product-price">ZMW 480.00</div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <h5 class="footer-title">Trisher Looks</h5>
+                <p>We offer trendy and affordable fashion for everyone. Quality products at the best prices.</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h5 class="footer-title">Shop</h5>
+                <ul class="footer-links">
+                    <li><a href="#">Women's Fashion</a></li>
+                    <li><a href="#">Men's Fashion</a></li>
+                    <li><a href="#">Kids' Fashion</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h5 class="footer-title">Customer Service</h5>
+                <ul class="footer-links">
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h5 class="footer-title">Newsletter</h5>
+                <p>Subscribe to get special offers, free giveaways, and new arrivals.</p>
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="Your email" aria-label="Your email">
+                    <button class="btn btn-primary" type="button">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="mb-2">&copy; 2025 Trisher Looks. All rights reserved.</p>
+            <div class="payment-methods">
+                <div class="payment-icon">Visa</div>
+                <div class="payment-icon">MC</div>
+                <div class="payment-icon">PayPal</div>
+                <div class="payment-icon">MOMO</div>
+            </div>
+            <div class="mt-3">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook fa-lg me-3"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Quantity controls
+    document.querySelectorAll('.quantity-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const input = this.parentElement.querySelector('.quantity-input');
+            let value = parseInt(input.value);
+            
+            if (this.textContent === '+') {
+                value++;
+            } else if (this.textContent === '-' && value > 1) {
+                value--;
+            }
+            
+            input.value = value;
+            
+            // Update the price (in a real app, you would calculate based on actual product price)
+            const pricePerItem = parseFloat(this.closest('.cart-item').querySelector('.product-price').textContent.replace('ZMW ', ''));
+            const totalElement = this.closest('.cart-item').querySelectorAll('.product-price')[1];
+            totalElement.textContent = 'ZMW ' + (pricePerItem * value).toFixed(2);
+            
+            updateCartSummary();
+        });
+    });
+    
+    // Remove items
+    document.querySelectorAll('.remove-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            this.closest('.cart-item').remove();
+            updateCartSummary();
+            
+            // If no items left, show empty cart message
+            if (document.querySelectorAll('.cart-item').length === 0) {
+                document.querySelector('.col-lg-8').innerHTML = `
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>Your cart is empty</h3>
+                        <p class="text-muted mb-4">Looks like you haven't added anything to your cart yet.</p>
+                        <a href="shop.html" class="btn btn-primary">Continue Shopping</a>
+                    </div>
+                `;
+            }
+        });
+    });
+    
+    // Update cart summary
+    function updateCartSummary() {
+        let subtotal = 0;
+        
+        document.querySelectorAll('.cart-item').forEach(item => {
+            const priceText = item.querySelectorAll('.product-price')[1].textContent;
+            const price = parseFloat(priceText.replace('ZMW ', ''));
+            subtotal += price;
+        });
+        
+        const shipping = 50;
+        const tax = subtotal * 0.05; // 5% tax
+        const total = subtotal + shipping + tax;
+        
+        document.querySelectorAll('.summary-item')[0].querySelector('span:last-child').textContent = 'ZMW ' + subtotal.toFixed(2);
+        document.querySelectorAll('.summary-item')[2].querySelector('span:last-child').textContent = 'ZMW ' + tax.toFixed(2);
+        document.querySelector('.summary-total span:last-child').textContent = 'ZMW ' + total.toFixed(2);
+    }
+</script>
 </body>
 </html>
